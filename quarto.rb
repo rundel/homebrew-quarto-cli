@@ -14,6 +14,8 @@ class Quarto < Formula
     prefix.install Dir["*"]
   end
 
+  conflicts_with "quarto-dev"
+
   test do
     system "quarto", "--version"
     system "quarto", "check", "install"
