@@ -10,11 +10,11 @@ class Quarto < Formula
     strategy :github_latest
   end
 
+  conflicts_with "quarto-dev"
+
   def install
     prefix.install Dir["*"]
   end
-
-  conflicts_with "quarto-dev"
 
   test do
     system "quarto", "--version"

@@ -5,11 +5,11 @@ class QuartoDev < Formula
   sha256 "62179042d82a4fe7c7341ee3fe91193840c8256761fba969faa1d7d95e14ad71"
   license "GPL-2.0-or-later"
 
+  conflicts_with "quarto"
+  
   def install
     prefix.install Dir["*"]
   end
-
-  conflicts_with "quarto"
 
   test do
     system "quarto", "--version"
