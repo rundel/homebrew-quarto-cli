@@ -8,6 +8,10 @@ class QuartoDev < Formula
   conflicts_with "quarto"
 
   def install
+    if Hardware::CPU.arm?
+      ln_s bin/tools/deno, deno-aarch64-apple-darwin/deno
+    end
+
     prefix.install Dir["*"]
   end
 
