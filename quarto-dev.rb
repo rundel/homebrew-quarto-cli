@@ -9,7 +9,9 @@ class QuartoDev < Formula
 
   def install
     if Hardware::CPU.arm?
-      ln_s bin/tools/deno, deno-aarch64-apple-darwin/deno
+      cd "bin/tools"
+      ln_s "deno-aarch64-apple-darwin/deno", "deno", 
+      cd "../../"
     end
 
     prefix.install Dir["*"]
