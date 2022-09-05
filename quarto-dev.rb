@@ -11,7 +11,7 @@ class QuartoDev < Formula
     if Hardware::CPU.arm?
       cd "bin/tools" do
         rm_f "deno"
-        ln_s "deno-aarch64-apple-darwin/deno", "deno"
+        ln_s "deno-aarch64-apple-darwin/deno", "deno", force: true
       end
     end
 
