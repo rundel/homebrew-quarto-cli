@@ -5,6 +5,11 @@ class QuartoDev < Formula
   sha256 "2846bda8df9af1ad27e45b7a69e8b22fe787753efe568730cb974261a0c01ea4"
   license "GPL-2.0-or-later"
 
+  livecheck do
+    url :stable
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+  end
+
   conflicts_with "quarto"
 
   def install
