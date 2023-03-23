@@ -17,7 +17,7 @@ class Quarto < Formula
   end
 
   test do
-    system "quarto", "--version"
-    system "quarto", "check", "install"
+    system "#{bin}/quarto", "--version"
+    system "#{bin}/quarto", "check", "install"
   end
 end
