@@ -22,27 +22,20 @@ class Quarto < Formula
   # fail with "Loading dynamic library failed ... different Team IDs" and HTML
   # renders segfault in deno.
   #
-  # Stash pristine copies as tarballs, which the relocation pass ignores since
-  # it only walks Mach-O files, and restore them in post_install, which runs
-  # after relocation. The tarballs are kept so `brew postinstall quarto`
+  # Stash pristine copies in a tarball, which the relocation pass ignores since
+  # it only walks Mach-O files, and restore them in post_install_steps, which
+  # run after relocation. The tarball is kept so `brew postinstall quarto`
   # repairs the install again if anything else re-signs the libraries.
-  def signed_libs
-    Dir[prefix/"bin/tools/**/*.dylib"] + Dir[prefix/"bin/tools/**/*.snapshot"]
-  end
-
   def install
     prefix.install Dir["*"]
 
-    signed_libs.each do |lib|
-      system "tar", "-czf", "#{lib}.pristine.tar.gz",
-             "-C", File.dirname(lib), File.basename(lib)
+    cd prefix do
+      system "tar", "-czf", "signed-libs.tar.gz", *Dir["bin/tools/**/*.{dylib,snapshot}"]
     end
   end
 
-  def post_install
-    Dir[prefix/"bin/tools/**/*.pristine.tar.gz"].each do |stash|
-      system "tar", "-xzf", stash, "-C", File.dirname(stash)
-    end
+  post_install_steps do
+    run "/usr/bin/tar", args: ["-xzf", "{{prefix}}/signed-libs.tar.gz", "-C", "{{prefix}}"]
   end
 
   test do
