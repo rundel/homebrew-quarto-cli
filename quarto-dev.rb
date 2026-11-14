@@ -1,8 +1,8 @@
 class QuartoDev < Formula
   desc "Scientific and technical publishing system built on Pandoc (pre-release)"
   homepage "https://www.quarto.org/"
-  url "https://github.com/quarto-dev/quarto-cli/releases/download/v1.12.0/quarto-1.12.0-macos.tar.gz"
-  sha256 "4e9124bb94e0a77507c756b0ea7fec5a6744ca776f3194c0e5686f1e59b16730"
+  url "https://github.com/quarto-dev/quarto-cli/releases/download/v1.12.2/quarto-1.12.2-macos.tar.gz"
+  sha256 "262ecf475ea2b5a1320bd956b78845f32cf2be06342c47de4b7a63492b2c7932"
   license "GPL-2.0-or-later"
 
   livecheck do
